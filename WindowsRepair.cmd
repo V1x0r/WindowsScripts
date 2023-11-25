@@ -77,13 +77,20 @@ echo ----------------------------------------------------------------
 Dism /Online /Cleanup-Image /RestoreHealth
 echo
 echo ----------------------------------------------------------------
-echo --                Finishing with SFC /Scannow                 --
+echo --                Running with SFC /Scannow                 --
 echo ----------------------------------------------------------------
 sfc /scannow
 echo
 echo ----------------------------------------------------------------
+echo --   Now scheduling a Checkdisk to check and fix the system   --
+echo --        you will have to select Y in order to schedule      --
+echo ----------------------------------------------------------------
+chkdsk C: /X /B /OfflineScanAndFix
+
+echo ----------------------------------------------------------------
 echo --       The cleanup process has completed successfully       --
 echo ----------------------------------------------------------------
-echo --                Please Restart the Computer                 --
+echo --            Press enter to restart the Computer             --
 echo ----------------------------------------------------------------
 pause
+shutdown /r /t 00 /f
